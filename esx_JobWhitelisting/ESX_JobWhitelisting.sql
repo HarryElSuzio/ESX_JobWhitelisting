@@ -1,19 +1,18 @@
 USE `essentialmode`;
 
-CREATE TABLE `characters` (
-	`id` INT(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `characters` (
+	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`identifier` VARCHAR(255) NOT NULL,
 	`firstname` VARCHAR(255) NOT NULL,
 	`lastname` VARCHAR(255) NOT NULL,
 	`dateofbirth` VARCHAR(255) NOT NULL,
-	`sex` VARCHAR(1) NOT NULL DEFAULT 'f',
+	`sex` VARCHAR(1) NOT NULL DEFAULT 'M',
 	`height` VARCHAR(128) NOT NULL,
-	`ems_rank` INT(11) NULL DEFAULT '-1',
-	`leo_rank` INT(11) NULL DEFAULT '-1',
-	`tow_rank` INT(11) NULL DEFAULT '-1',
 	PRIMARY KEY (`id`)
-)
-COLLATE='latin1_swedish_ci'
-ENGINE=MyISAM
-AUTO_INCREMENT=48
-;
+);
+
+ALTER TABLE `characters` ADD COLUMN IF NOT EXISTS (
+`ems_rank`  int(11) NULL DEFAULT '-1',
+`leo_rank`  int(11) NULL DEFAULT '-1',
+`tow_rank`  int(11) NULL DEFAULT '-1'
+);
